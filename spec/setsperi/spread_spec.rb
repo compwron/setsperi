@@ -8,7 +8,7 @@ describe Spread do
     [
       Card.new(Card::Number::One, Card::Symbol::Diamond, Card::Shading::Solid, Card::Color::Red),
       Card.new(Card::Number::One, Card::Symbol::Diamond, Card::Shading::Solid, Card::Color::Green),
-      Card.new(Card::Number::One, Card::Symbol::Diamond, Card::Shading::Solid, Card::Color::Purple),
+      Card.new(Card::Number::One, Card::Symbol::Diamond, Card::Shading::Solid, Card::Color::Purple)
     ]
   end
 
@@ -34,7 +34,7 @@ describe Spread do
     cards_with_set = (spread_from_deck.cards[0..9] << valid_user_set).flatten # make sure that spread includes valid set
     spread_from_deck.cards = cards_with_set
     s = Spread.new(spread_from_deck, valid_user_set, deck)
-    
+
     expect(s.cards).to_not eq cards_with_set
     expect(_overlap_size(s.cards, cards_with_set)).to eq 10 # wait, why 10?
   end

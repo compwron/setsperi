@@ -16,7 +16,7 @@ class Deck
     @cards = @cards - cards
   end
 
-  def draw_cards num
+  def draw_cards(num)
     cards = @cards.sample num
     _remove_from_available_cards cards
     @used_cards << cards
