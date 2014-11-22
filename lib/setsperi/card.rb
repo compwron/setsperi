@@ -5,7 +5,7 @@
     end
 
     def ==(other)
-      other.number == number &&     	other.symbol == symbol &&     	other.shading == shading &&     	other.color == color
+      other.number == number && other.symbol == symbol && other.shading == shading && other.color == color
     end
 
     def to_s
