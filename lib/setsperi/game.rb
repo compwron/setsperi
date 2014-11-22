@@ -27,6 +27,6 @@ class Game
   end
 
   def _spread
-    Spread.new [], [], Deck.new
+    Spread.new nil, [], Deck.new
   end
 end
