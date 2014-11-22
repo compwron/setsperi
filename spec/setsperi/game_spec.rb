@@ -1,8 +1,8 @@
 require_relative 'spec_helper'
 
-describe Setsperi::Game do
+describe Game do
   it 'starts with 12 cards in the spread' do
-    g = Setsperi::Game.new # nil, nil, Setsperi::Deck.new
+    g = Game.new # nil, nil, Setsperi::Deck.new
     expect(g._spread.size).to eq 12
   end
 
