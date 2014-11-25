@@ -27,4 +27,8 @@
     def _cards(deck)
       deck.draw_cards 12
     end
+
+    def add_extra_cards
+      # TODO
+    end
   end

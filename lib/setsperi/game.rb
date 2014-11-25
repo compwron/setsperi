@@ -1,32 +1,61 @@
 class Game
   require_relative 'deck'
   require_relative 'spread'
+
+  attr_reader :deck, :spread
+
   def initialize
     @deck = Deck.new
-    @used_cards = []
+    @spread = Spread.new nil, nil, deck
   end
 
   def play
     while _continue_play
-      # user_set = get from user
-      # spread = spread.evaluate(user_set)
-      # show spread to user
-
-      # puts "Spread is: #{_spread}"
-      # user_set = gets.strip!.split
+      user_input = _interpret_command gets.chomp
+      break if @done
+      @spread.add_extra_set if @cheat
+      _process_input user_input
     end
-    # return stats of play (sets found, fastest time-to-set)
   end
 
-  def _continue_play
-    @deck.size > 0 && _sets_in_spread?(@current_cards)
+  def _process_input user_input
   end
 
-  def _sets_in_spread?(_current_cards)
-    true
+  def _interpret_command input
+    @done = true && return if _end_game? input 
+    @cheat = true && return if _draw_more? input
+
+    CardSet.new _cards_from(input)
   end
 
-  def _spread
-    Spread.new nil, [], Deck.new
+  def _cards_from input
+    # validate format
+    # make new object userCardSetValidator to do this?
+    []
+  end
+
+  def _end_game? input
+  end
+
+  def _draw_more? input
   end
 end
+
+
+# def play
+#   puts "#{current_player.name} has randomly been selected as the first player"
+#   while true
+#     board.formatted_grid
+#     puts ""
+#     puts solicit_move
+#     x, y = get_move
+#     board.set_cell(x, y, current_player.color)
+#     if board.game_over
+#       puts game_over_message
+#       board.formatted_grid
+#       return
+#     else
+#       switch_players
+#     end
+#   end
+# end
