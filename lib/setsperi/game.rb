@@ -11,14 +11,19 @@ class Game
 
   def play
     while _continue_play
-      user_input = _interpret_command gets.chomp
+      user_input_cards = _interpret_command gets.chomp
       break if @done
-      @spread.add_extra_set if @cheat
-      _process_input user_input
+      @spread.add_extra_cards if @cheat
+      _process_input user_input_cards
     end
   end
 
-  def _process_input user_input
+  def _continue_play
+    false
+  end
+
+  def _process_input user_input_cards
+    @spread = Spread.new(@spread, user_input_cards, @deck)
   end
 
   def _interpret_command input
