@@ -17,5 +17,3 @@
       @validity
     end
   end
-
-

@@ -22,30 +22,29 @@ class Game
     false
   end
 
-  def _process_input user_input_cards
+  def _process_input(user_input_cards)
     @spread = Spread.new(@spread, user_input_cards, @deck)
   end
 
-  def _interpret_command input
-    @done = true && return if _end_game? input 
+  def _interpret_command(input)
+    @done = true && return if _end_game? input
     @cheat = true && return if _draw_more? input
 
     CardSet.new _cards_from(input)
   end
 
-  def _cards_from input
+  def _cards_from(_input)
     # validate format
     # make new object userCardSetValidator to do this?
     []
   end
 
-  def _end_game? input
+  def _end_game?(_input)
   end
 
-  def _draw_more? input
+  def _draw_more?(_input)
   end
 end
-
 
 # def play
 #   puts "#{current_player.name} has randomly been selected as the first player"

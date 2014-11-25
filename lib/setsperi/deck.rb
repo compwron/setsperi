@@ -1,6 +1,6 @@
 class Deck
   require_relative 'card'
-  attr_reader :cards
+  attr_accessor :cards # for testing. find a better way
 
   def initialize
     @cards = _cards
