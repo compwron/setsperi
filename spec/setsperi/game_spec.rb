@@ -2,7 +2,7 @@ require_relative 'spec_helper'
 
 describe Game do
   it 'starts with 12 cards in the spread' do
-    g = Game.new 
+    g = Game.new
     expect(g._spread.cards.size).to eq 12
   end
 
