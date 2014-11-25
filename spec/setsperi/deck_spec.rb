@@ -10,8 +10,10 @@ describe Deck do
 
   it 'each card has number, symbol, shading, color' do
     card = new_deck.cards.sample
-    expect([:One, :Two, :Three]).to include card.number
-    # TODO test symbol, shading, color
+    expect(Card::Number.constants).to include card.number
+    expect(Card::Symbol.constants).to include card.symbol
+    expect(Card::Shading.constants).to include card.shading
+    expect(Card::Color.constants).to include card.color
   end
 
   it 'accepts used cards and returns deck minus the used cards' do

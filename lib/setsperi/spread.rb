@@ -1,12 +1,16 @@
   class Spread
     attr_accessor :cards
     def initialize(spread, user_set, deck)
-      @cards = if spread.nil?
-                 _cards deck
-               elsif _user_set_in_spread?(spread, user_set) && _valid_set?(user_set)
-                 spread.cards - user_set + deck.draw_cards(3)
-               else
-                 spread.cards
+      @cards = _choose_cards spread, user_set, deck
+    end
+
+    def _choose_cards(spread, user_set, deck)
+      if spread.nil?
+        _cards deck
+      elsif _user_set_in_spread?(spread, user_set) && _valid_set?(user_set)
+        spread.cards - user_set + deck.draw_cards(3)
+      else
+        spread.cards
       end
     end
 

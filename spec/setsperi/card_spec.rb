@@ -1,9 +1,6 @@
 require_relative 'spec_helper'
 
 describe Card do
-  xit 'has all types of cards' do
-    # expect(Card::Number.constants).to eq [:One, :Two, :Three]
-  end
 
   it 'is equal to a card with the same attributes' do
     c1 = Card.new(Card::Number::One, Card::Symbol::Diamond, Card::Shading::Solid, Card::Color::Red)
