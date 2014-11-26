@@ -19,7 +19,7 @@ class Game
   end
 
   def _continue_play
-    false
+    @deck.cards.size > 0 || (@spread.cards.size > 0 && @spread.has_valid_set?)
   end
 
   def _process_input(user_input_cards)

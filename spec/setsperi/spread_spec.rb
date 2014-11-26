@@ -12,6 +12,14 @@ describe Spread do
     ]
   end
 
+  let(:non_set_cards) do
+    [
+      Card.new(Card::Number::One, Card::Symbol::Diamond, Card::Shading::Solid, Card::Color::Red),
+      Card.new(Card::Number::Two, Card::Symbol::Diamond, Card::Shading::Solid, Card::Color::Green),
+      Card.new(Card::Number::Two, Card::Symbol::Diamond, Card::Shading::Solid, Card::Color::Purple)
+    ]
+  end
+
   it 'should have cards when made with just a deck' do
     expect(spread_from_deck.cards.size).to eq 12
     expect([:One, :Two, :Three]).to include spread_from_deck.cards.first.number
@@ -37,6 +45,17 @@ describe Spread do
 
     expect(s.cards).to_not eq cards_with_set
     expect(_overlap_size(s.cards, cards_with_set)).to eq 10 # wait, why 10?
+  end
+
+  
+  it 'should contain valid set' do
+    spread_from_deck.cards = valid_user_set
+    expect(spread_from_deck.has_valid_set?).to eq true
+  end
+  
+  it 'should detect containing no valid sets' do
+    spread_from_deck.cards = non_set_cards
+    expect(spread_from_deck.has_valid_set?).to eq false
   end
 
   def _overlap_size(arr1, arr2)

@@ -4,6 +4,13 @@
       @cards = _choose_cards spread, user_set, deck
     end
 
+    def has_valid_set?
+      @cards.permutation(3).each {|possible_set|
+        return true if _valid_set?(possible_set)
+      }
+      false
+    end
+
     def _choose_cards(spread, user_set, deck)
       if spread.nil?
         _cards deck
