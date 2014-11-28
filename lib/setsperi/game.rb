@@ -12,7 +12,7 @@ class Game
 
   def play
     @turns = 0
-    while _continue_play
+    while _continue_play @turns, @deck, @spread
       @turns += 1
       puts "turns: #{@turns}"
       user_input_cards = _interpret_command gets.chomp
@@ -27,10 +27,9 @@ class Game
     @turns
   end
 
-  def _continue_play
-    # puts "size of deck dards: #{@deck.cards.size} ... size of spread cards: #{@spread.cards.size}"
+  def _continue_play turns_played, deck, spread
     return false if turns_played > MAX_TURNS
-    @deck.cards.size > 0 || (@spread.cards.size > 0 && @spread.has_valid_set?)
+    deck.cards.size > 0 || (spread.cards.size > 0 && spread.has_valid_set?)
   end
 
   def _process_input(user_input_cards)
