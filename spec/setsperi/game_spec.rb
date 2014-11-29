@@ -8,17 +8,25 @@ describe Game do
         Card.new(1, 'squiggle', 'solid', 'red'),
         Card.new(1, 'oval', 'solid', 'red')]
       }
+  let(:card) {Card.new(1, 'squiggle', 'solid', 'red')}
 
   describe '_cards_from' do
     it 'understands there are no cards in an invalid submitted set' do
-      expect(s._cards_from("foo")). to eq []
+      expect(g._cards_from("foo")). to eq []
     end
 
     it 'understands there are no cards in an empty submitted set' do 
-      expect(s._cards_from("")).to eq []
+      expect(g._cards_from("")).to eq []
     end
-    it 'sees one card in a set'
-    it 'sees several cards in a set'
+
+    it 'sees one card in a set' do
+      expect(g._cards_from(card.input_style)).to eq [card]
+    end
+
+    it 'sees several cards in a set' do
+      valid_input_set = valid_set.map {|c| c.input_style }.join(",")
+      expect(g._cards_from()).to eq valid_set
+    end
   end
 
   describe 'play' do
@@ -44,7 +52,7 @@ describe Game do
       g.spread.cards += valid_set
 
       # Play valid set and then end game so we can count the points
-      user_input_set = CardSet.new(valid_set).to_s
+      user_input_set = CardSet.new(valid_set).input_style
       expect(g).to receive(:gets).and_return(user_input_set, "done")
       g.play
       expect(g.turns_played).to eq 2

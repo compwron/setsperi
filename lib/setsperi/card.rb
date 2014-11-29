@@ -12,6 +12,11 @@
       "#{number} #{symbol}:#{shading}:#{color}" # .colorize(color.to_sym)
     end
 
+    def input_style
+      [number, symbol[0], shading[0..1], color[0]].map {|i| i == i.to_i ? i : i.capitalize}.join
+      # "#{number[0]}#{symbol[0]}#{shading[0..1]}#{color[0]}" # a code that can be output and input
+    end
+
     module Number
       One = 1
       Two = 2
