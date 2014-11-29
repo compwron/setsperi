@@ -1,7 +1,9 @@
   require 'pry'
   class CardSet
+    attr_reader :cards
     def initialize(cards)
       @validity = _valid? cards
+      @cards = cards
     end
 
     def _valid?(cards)

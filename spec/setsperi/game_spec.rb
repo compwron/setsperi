@@ -4,6 +4,22 @@ describe Game do
   let(:g) { Game.new }
   let (:empty_deck) { deck = Game.new.deck ; deck.cards = [] ; deck}
   let (:empty_spread) { spread = Game.new.spread ; spread.cards = [] ; spread}
+  let (:valid_set) { [Card.new(1, 'diamond', 'solid', 'red'),
+        Card.new(1, 'squiggle', 'solid', 'red'),
+        Card.new(1, 'oval', 'solid', 'red')]
+      }
+
+  describe '_cards_from' do
+    it 'understands there are no cards in an invalid submitted set' do
+      expect(s._cards_from("foo")). to eq []
+    end
+
+    it 'understands there are no cards in an empty submitted set' do 
+      expect(s._cards_from("")).to eq []
+    end
+    it 'sees one card in a set'
+    it 'sees several cards in a set'
+  end
 
   describe 'play' do
     it 'ends when there are no valid sets left' do
@@ -17,6 +33,22 @@ describe Game do
       expect(g).to receive(:gets).and_return("done")
       g.play
       expect(g.turns_played).to eq 1
+    end
+
+    it 'removes cards from deck when user finds valid set' do
+      # stock a spread with a valid set
+      # user submits the valid set
+      # user gets a point
+      # turn advances
+      g.spread.cards -= g.spread.cards.sample 3
+      g.spread.cards += valid_set
+
+      # Play valid set and then end game so we can count the points
+      user_input_set = CardSet.new(valid_set).to_s
+      expect(g).to receive(:gets).and_return(user_input_set, "done")
+      g.play
+      expect(g.turns_played).to eq 2
+      expect(g.summary).to match /user_input_set/
     end
   end
 
@@ -38,12 +70,4 @@ describe Game do
   it 'continues play when there are valid sets in the spread' do
     expect(g._continue_play 0, empty_deck, g.spread).to eq true
   end
-
-
-
-  it 'lets play continue when there are cards in the deck'
-
-  it 'lets play continue when there are valid sets in the spread'
 end
-
-
