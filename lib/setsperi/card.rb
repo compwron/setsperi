@@ -9,12 +9,16 @@
     end
 
     def to_s
-      "#{number} #{symbol}:#{shading}:#{color}" # .colorize(color.to_sym)
+      "#{number} #{symbol}:#{shading}:#{color}" 
     end
 
     def input_style
       [number, symbol[0], shading[0..1], color[0]].map {|i| i == i.to_i ? i : i.capitalize}.join
-      # "#{number[0]}#{symbol[0]}#{shading[0..1]}#{color[0]}" # a code that can be output and input
+    end
+
+    def self.resurruct dessicated_card
+      Number.constants.select {|n| n == dessicated_card[0].to_i}
+      Symbol.constants.map {|s|}
     end
 
     module Number

@@ -44,9 +44,7 @@ class Game
   end
 
   def _cards_from(_input)
-    # validate format
-    # make new object userCardSetValidator to do this?
-    []
+    input.split(',').map {|i| Card.resurrect i.chomp }
   end
 
   def _end_game?(_input)
