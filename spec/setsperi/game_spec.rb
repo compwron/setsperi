@@ -26,7 +26,7 @@ describe Game do
 
     it 'sees several cards in a set' do
       valid_input_set = valid_set.map(&:input_style).join(',')
-      expect(g._cards_from).to eq valid_set
+      expect(g._cards_from(valid_input_set)).to eq valid_set
     end
   end
 

@@ -1,3 +1,5 @@
+[![Twitter: @compiledwrong](https://img.shields.io/badge/contact-@compiledwrong-blue.svg?style=flat)](https://twitter.com/compiledwrong)
+
 Status:
 ====
 Does not really work yet
