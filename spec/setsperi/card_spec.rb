@@ -4,10 +4,14 @@ describe Card do
   let(:c1) { Card.new(Card::Number::One, Card::Symbol::Diamond, Card::Shading::Solid, Card::Color::Red) }
   let(:c2) { Card.new(Card::Number::Two, Card::Symbol::Squiggle, Card::Shading::Striped, Card::Color::Green) }
 
-  describe 'self.resurruct' do
+  describe 'self.resurrect' do
     it 'should create a card from a user input' do
-      expect(Card.resurruct('1DSoR')).to eq c1
-      expect(Card.resurruct('2SStG')).to eq c2
+      expect(Card.resurrect('1DSoR')).to eq c1
+      expect(Card.resurrect('2SStG')).to eq c2
+    end
+
+    it 'creates no card from invalid input' do
+      expect(Card.resurrect('foo')).to eq nil
     end
   end
 

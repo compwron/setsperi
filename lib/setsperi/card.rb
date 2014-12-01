@@ -16,12 +16,12 @@
       [number, symbol[0], shading[0..1], color[0]].map { |i| i == i.to_i ? i : i.capitalize }.join
     end
 
-    def self.resurruct(dessicated_card)
+    def self.resurrect(dessicated_card)
       n = Number.constants.map { |n| eval("Number::#{n}") }.find { |n| n == dessicated_card[0].to_i }
       s = Symbol.constants.map { |s| eval("Symbol::#{s}") }.find { |s| s.capitalize[0] == dessicated_card[1] }
       sh = Shading.constants.map { |sh| eval("Shading::#{sh}") }.find { |sh| sh.capitalize[0..1] == dessicated_card[2..3] }
       c = Color.constants.map { |c| eval("Color::#{c}") }.find { |c| c.capitalize[0] == dessicated_card[4] }
-      Card.new(n, s, sh, c)
+      [n, s, sh, c].compact.size == 4 ? Card.new(n, s, sh, c) : nil
     end
 
     module Number

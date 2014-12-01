@@ -44,7 +44,7 @@ class Game
   end
 
   def _cards_from(_input)
-    input.split(',').map { |i| Card.resurrect i.chomp }
+    _input.split(',').map { |i| Card.resurrect i.chomp }.compact
   end
 
   def _end_game?(_input)
