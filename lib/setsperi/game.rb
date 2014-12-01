@@ -20,14 +20,14 @@ class Game
       @spread.add_extra_cards if @cheat
       _process_input user_input_cards
     end
-    "game over"
+    'game over'
   end
 
   def turns_played
     @turns
   end
 
-  def _continue_play turns_played, deck, spread
+  def _continue_play(turns_played, deck, spread)
     return false if turns_played > MAX_TURNS
     deck.cards.size > 0 || (spread.cards.size > 0 && spread.has_valid_set?)
   end
@@ -44,12 +44,12 @@ class Game
   end
 
   def _cards_from(_input)
-    input.split(',').map {|i| Card.resurrect i.chomp }
+    input.split(',').map { |i| Card.resurrect i.chomp }
   end
 
   def _end_game?(_input)
     puts "input is: #{_input}"
-    _input.chomp.downcase == "done"
+    _input.chomp.downcase == 'done'
   end
 
   def _draw_more?(_input)

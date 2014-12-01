@@ -5,9 +5,9 @@
     end
 
     def has_valid_set?
-      @cards.permutation(3).each {|possible_set|
+      @cards.permutation(3).each do|possible_set|
         return true if _valid_set?(possible_set)
-      }
+      end
       false
     end
 

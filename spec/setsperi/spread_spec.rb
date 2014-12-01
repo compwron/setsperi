@@ -47,12 +47,11 @@ describe Spread do
     expect(_overlap_size(s.cards, cards_with_set)).to eq 10 # wait, why 10?
   end
 
-  
   it 'should contain valid set' do
     spread_from_deck.cards = valid_user_set
     expect(spread_from_deck.has_valid_set?).to eq true
   end
-  
+
   it 'should detect containing no valid sets' do
     spread_from_deck.cards = non_set_cards
     expect(spread_from_deck.has_valid_set?).to eq false

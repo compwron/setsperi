@@ -2,21 +2,22 @@ require_relative 'spec_helper'
 
 describe Game do
   let(:g) { Game.new }
-  let (:empty_deck) { deck = Game.new.deck ; deck.cards = [] ; deck}
-  let (:empty_spread) { spread = Game.new.spread ; spread.cards = [] ; spread}
-  let (:valid_set) { [Card.new(1, 'diamond', 'solid', 'red'),
-        Card.new(1, 'squiggle', 'solid', 'red'),
-        Card.new(1, 'oval', 'solid', 'red')]
-      }
-  let(:card) {Card.new(1, 'squiggle', 'solid', 'red')}
+  let (:empty_deck) { deck = Game.new.deck; deck.cards = []; deck }
+  let (:empty_spread) { spread = Game.new.spread; spread.cards = []; spread }
+  let (:valid_set) do
+    [Card.new(1, 'diamond', 'solid', 'red'),
+     Card.new(1, 'squiggle', 'solid', 'red'),
+     Card.new(1, 'oval', 'solid', 'red')]
+  end
+  let(:card) { Card.new(1, 'squiggle', 'solid', 'red') }
 
   describe '_cards_from' do
     it 'understands there are no cards in an invalid submitted set' do
-      expect(g._cards_from("foo")). to eq []
+      expect(g._cards_from('foo')). to eq []
     end
 
-    it 'understands there are no cards in an empty submitted set' do 
-      expect(g._cards_from("")).to eq []
+    it 'understands there are no cards in an empty submitted set' do
+      expect(g._cards_from('')).to eq []
     end
 
     it 'sees one card in a set' do
@@ -24,8 +25,8 @@ describe Game do
     end
 
     it 'sees several cards in a set' do
-      valid_input_set = valid_set.map {|c| c.input_style }.join(",")
-      expect(g._cards_from()).to eq valid_set
+      valid_input_set = valid_set.map(&:input_style).join(',')
+      expect(g._cards_from).to eq valid_set
     end
   end
 
@@ -33,12 +34,12 @@ describe Game do
     it 'ends when there are no valid sets left' do
       g.deck.cards = []
       g.spread.cards = []
-      expect(g.play).to eq "game over"
+      expect(g.play).to eq 'game over'
       expect(g.turns_played).to eq 0
     end
 
     it 'ends when user says done' do
-      expect(g).to receive(:gets).and_return("done")
+      expect(g).to receive(:gets).and_return('done')
       g.play
       expect(g.turns_played).to eq 1
     end
@@ -53,7 +54,7 @@ describe Game do
 
       # Play valid set and then end game so we can count the points
       user_input_set = CardSet.new(valid_set).input_style
-      expect(g).to receive(:gets).and_return(user_input_set, "done")
+      expect(g).to receive(:gets).and_return(user_input_set, 'done')
       g.play
       expect(g.turns_played).to eq 2
       expect(g.summary).to match /user_input_set/
