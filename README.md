@@ -1,4 +1,10 @@
 [![Twitter: @compiledwrong](https://img.shields.io/badge/contact-@compiledwrong-blue.svg?style=flat)](https://twitter.com/compiledwrong)
+[![Code Climate](https://codeclimate.com/github/compwron/setsperi/badges/gpa.svg)](https://codeclimate.com/github/compwron/setsperi)
+[![Test Coverage](https://codeclimate.com/github/compwron/setsperi/badges/coverage.svg)](https://codeclimate.com/github/compwron/setsperi)
+[![Build Status](https://travis-ci.org/compwron/setsperi.svg)](https://travis-ci.org/compwron/setsperi)
+[![Dependency Status](https://gemnasium.com/compwron/setsperi.png)](https://gemnasium.com/compwron/setsperi)
+
+
 
 Status:
 ====
