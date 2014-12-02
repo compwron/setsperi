@@ -40,7 +40,7 @@ class Game
     @done = true if _end_game? input
     @cheat = true if _draw_more? input
     return if @done || @cheat
-    CardSet.new _cards_from(input)
+    _cards_from(input)
   end
 
   def _cards_from(_input)
@@ -53,6 +53,9 @@ class Game
   end
 
   def _draw_more?(_input)
+  end
+
+  def summary
   end
 end
 

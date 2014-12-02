@@ -56,7 +56,11 @@ describe Game do
       expect(g).to receive(:gets).and_return(valid_input_set, 'done')
       g.play
       expect(g.turns_played).to eq 2
-      expect(g.summary).to match /user_input_set/
+      puts valid_input_set
+    end
+
+    describe "summary" do
+      # 
     end
   end
 
