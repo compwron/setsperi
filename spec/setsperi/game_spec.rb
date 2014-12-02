@@ -9,6 +9,7 @@ describe Game do
      Card.new(1, 'squiggle', 'solid', 'red'),
      Card.new(1, 'oval', 'solid', 'red')]
   end
+  let (:valid_input_set) { valid_set.map(&:input_style).join(',') }
   let(:card) { Card.new(1, 'squiggle', 'solid', 'red') }
 
   describe '_cards_from' do
@@ -25,7 +26,6 @@ describe Game do
     end
 
     it 'sees several cards in a set' do
-      valid_input_set = valid_set.map(&:input_style).join(',')
       expect(g._cards_from(valid_input_set)).to eq valid_set
     end
   end
@@ -53,8 +53,7 @@ describe Game do
       g.spread.cards += valid_set
 
       # Play valid set and then end game so we can count the points
-      user_input_set = CardSet.new(valid_set).input_style
-      expect(g).to receive(:gets).and_return(user_input_set, 'done')
+      expect(g).to receive(:gets).and_return(valid_input_set, 'done')
       g.play
       expect(g.turns_played).to eq 2
       expect(g.summary).to match /user_input_set/
