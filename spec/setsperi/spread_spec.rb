@@ -20,6 +20,22 @@ describe Spread do
     ]
   end
 
+  describe "pretty" do
+    it 'shows the default spread in 4x3 rows with a total of 12 valid cards' do
+      s = spread_from_deck.pretty
+      expect(s.split("\n").size).to eq 3
+      s.split("\n").map {|l| 
+        expect(l.split(" ").size).to eq 4
+      }
+
+      s.split("\n").map {|l| 
+        l.split(" ").map {|c|
+          expect(Card.resurrect(c)).to_not be_nil
+        }
+      }      
+    end
+  end
+
   it 'should have cards when made with just a deck' do
     expect(spread_from_deck.cards.size).to eq 12
     expect([:One, :Two, :Three]).to include spread_from_deck.cards.first.number

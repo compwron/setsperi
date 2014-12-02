@@ -3,7 +3,7 @@ class Game
   require_relative 'spread'
 
   attr_reader :deck, :spread
-  MAX_TURNS = 2
+  MAX_TURNS = Deck.starting_size
 
   def initialize
     @deck = Deck.new
@@ -14,6 +14,7 @@ class Game
     @turns = 0
     while _continue_play @turns, @deck, @spread
       @turns += 1
+      puts "Turn: #{turns_played}\n Spread: #{@spread.pretty}\nYour guess: "
       user_input_cards = _interpret_command gets.chomp
       break if @done
       @spread.add_extra_cards if @cheat

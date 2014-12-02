@@ -38,4 +38,8 @@
     def add_extra_cards
       # TODO
     end
+
+    def pretty
+      "1DSoR 1DSoR 1DSoR 1DSoR\n1DSoR 1DSoR 1DSoR 1DSoR\n1DSoR 1DSoR 1DSoR 1DSoR"
+    end
   end

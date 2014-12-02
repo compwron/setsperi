@@ -7,6 +7,10 @@ class Deck
     @used_cards = []
   end
 
+  def self.starting_size
+    81
+  end
+
   def used(cards)
     @used_cards << cards
     _remove_from_available_cards cards
