@@ -56,11 +56,10 @@ describe Game do
       expect(g).to receive(:gets).and_return(valid_input_set, 'done')
       g.play
       expect(g.turns_played).to eq 2
-      puts valid_input_set
     end
 
-    describe "summary" do
-      # 
+    describe 'summary' do
+      #
     end
   end
 
@@ -70,7 +69,6 @@ describe Game do
   end
 
   it 'stops play when there are no more cards in the deck and no valid sets in the spread' do
-    puts "empty deck is: #{empty_deck}"
     expect(g._continue_play 0, empty_deck, empty_spread).to eq false
   end
 
