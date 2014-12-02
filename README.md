@@ -17,6 +17,11 @@ Goal:
 * Use ruby and possibly rails, for practice with the ecosystem tooling. 
 * Make it a gem, because why the heck not
 
+Disclaimers:
+====
+
+* My commit style on this project is very fragmented because I steal ten minutes here and there (at lunch, on a plane, in the morning before work) to write a test and make it pass (or not) ... on a production / team project, I would break fewer things and make more cohesive (and better-described) commits. 
+
 Ideas / Inspiration:
 ====
 
@@ -38,6 +43,3 @@ Play:
 ```
 ./bin/play
 ```
-
-
-https://www.codeeval.com/
