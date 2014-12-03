@@ -28,11 +28,14 @@ describe Spread do
         expect(l.split(" ").size).to eq 4
       }
 
-      s.split("\n").map {|l| 
+      expect(s.split("\n").map {|l| 
         l.split(" ").map {|c|
-          expect(Card.resurrect(c)).to_not be_nil
+          card = Card.resurrect(c)
+          expect(card).to_not be_nil
+          card
         }
-      }      
+      }.flatten.map {|card| card.input_style }.uniq.size).to eq spread_from_deck.cards.size # cards in spread should be unique
+
     end
   end
 
