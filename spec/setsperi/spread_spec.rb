@@ -21,57 +21,63 @@ describe Spread do
   end
 
   describe "pretty" do
-    it 'shows the default spread in 4x3 rows with a total of 12 valid cards' do
-      s = spread_from_deck.pretty
-      expect(s.split("\n").size).to eq 3
-      s.split("\n").map {|l| 
+    # put the setup in a let and then assert against specify?
+    let(:pretty_spread) {spread_from_deck.pretty}
+    
+    specify 'shows the default spread in 4x3 rows wspecifyh a total of 12 valid cards' do
+      expect(pretty_spread.split("\n").size).to eq 3
+      pretty_spread.split("\n").map {|l| 
         expect(l.split(" ").size).to eq 4
       }
+    end
 
-      expect(s.split("\n").map {|l| 
+    def _cards_in_pretty_spread pretty
+      pretty.split("\n").map {|l| 
         l.split(" ").map {|c|
-          card = Card.resurrect(c)
-          expect(card).to_not be_nil
-          card
+          Card.resurrect(c)
         }
-      }.flatten.map {|card| card.input_style }.uniq.size).to eq spread_from_deck.cards.size # cards in spread should be unique
+      }.flatten
+    end
 
+    specify 'cards in spread should be unique' do
+      input_style_cards = _cards_in_pretty_spread(pretty_spread).map {|card| card.input_style }
+      expect(input_style_cards.uniq.size).to eq spread_from_deck.cards.size 
     end
   end
 
-  it 'should have cards when made with just a deck' do
+  specify 'should have cards when made wspecifyh just a deck' do
     expect(spread_from_deck.cards.size).to eq 12
     expect([:One, :Two, :Three]).to include spread_from_deck.cards.first.number
   end
 
-  it 'should have the same cards as the previous spread when made with a spread, no user set, and a deck' do
+  specify 'should have the same cards as the previous spread when made wspecifyh a spread, no user set, and a deck' do
     s = Spread.new(spread_from_deck, nil, deck)
     expect(s.cards).to eq spread_from_deck.cards
   end
 
-  it 'should have the same cards as the previous spread when made with a spread, an invalid user set, and a deck' do
+  specify 'should have the same cards as the previous spread when made wspecifyh a spread, an invalid user set, and a deck' do
     s = Spread.new(spread_from_deck, invalid_user_set, deck)
     expect(s.cards).to eq spread_from_deck.cards
   end
 
-  it 'should have three new cards when made with a spread, a valid user set, and a deck' do
+  specify 'should have three new cards when made wspecifyh a spread, a valid user set, and a deck' do
     cs = CardSet.new(valid_user_set)
     expect(cs).to be_valid
 
-    cards_with_set = (spread_from_deck.cards[0..9] << valid_user_set).flatten # make sure that spread includes valid set
-    spread_from_deck.cards = cards_with_set
+    cards_wspecifyh_set = (spread_from_deck.cards[0..9] << valid_user_set).flatten # make sure that spread includes valid set
+    spread_from_deck.cards = cards_wspecifyh_set
     s = Spread.new(spread_from_deck, valid_user_set, deck)
 
-    expect(s.cards).to_not eq cards_with_set
-    expect(_overlap_size(s.cards, cards_with_set)).to eq 10 # wait, why 10?
+    expect(s.cards).to_not eq cards_wspecifyh_set
+    expect(_overlap_size(s.cards, cards_wspecifyh_set)).to eq 10 # waspecify, why 10?
   end
 
-  it 'should contain valid set' do
+  specify 'should contain valid set' do
     spread_from_deck.cards = valid_user_set
     expect(spread_from_deck.has_valid_set?).to eq true
   end
 
-  it 'should detect containing no valid sets' do
+  specify 'should detect containing no valid sets' do
     spread_from_deck.cards = non_set_cards
     expect(spread_from_deck.has_valid_set?).to eq false
   end

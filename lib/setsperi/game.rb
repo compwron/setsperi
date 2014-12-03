@@ -5,7 +5,7 @@ class Game
   attr_reader :deck, :spread
   MAX_TURNS = Deck.starting_size
 
-  def initialize
+  def initialize(stdout = STDOUT)
     @deck = Deck.new
     @spread = Spread.new nil, nil, deck
   end

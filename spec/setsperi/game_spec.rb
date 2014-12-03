@@ -31,11 +31,13 @@ describe Game do
   end
 
   describe 'play' do
+
     it 'ends when there are no valid sets left' do
       g.deck.cards = []
       g.spread.cards = []
       expect(g.play).to eq 'game over'
       expect(g.turns_played).to eq 0
+      expect { g.play }.to output("my message").to_stdout
     end
 
     it 'ends when user says done' do
