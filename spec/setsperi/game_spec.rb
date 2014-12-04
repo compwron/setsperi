@@ -39,7 +39,6 @@ describe Game do
       expect(g.play).to eq 'game over'
       expect(g.turns_played).to eq 0
       g.play
-      binding.pry
       puts "assigned out: #{assigned_out}"
        # }.to output('my message').to_stdout
     end
