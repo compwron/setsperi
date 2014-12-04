@@ -28,7 +28,7 @@ class Deck
   end
 
   def _cards
-    Card::Number.constants.map do|n|
+    Card::Number.map do|n|
       Card::Symbol.constants.map do|sy|
         Card::Shading.constants.map do|sh|
           Card::Color.constants.map do|c|

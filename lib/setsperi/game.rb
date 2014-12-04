@@ -5,7 +5,8 @@ class Game
   attr_reader :deck, :spread
   MAX_TURNS = Deck.starting_size
 
-  def initialize(stdout = STDOUT)
+  def initialize(args)
+    @out = args[:stdout] || STDOUT
     @deck = Deck.new
     @spread = Spread.new nil, nil, deck
   end
@@ -14,17 +15,22 @@ class Game
     @turns = 0
     while _continue_play @turns, @deck, @spread
       @turns += 1
-      puts "Turn: #{turns_played}\n Spread: #{@spread.pretty}\nYour guess: "
+      @out.puts "Turn: #{turns_played}\n Spread: \n#{@spread.pretty}\nYour guess: "
       user_input_cards = _interpret_command gets.chomp
       break if @done
       @spread.add_extra_cards if @cheat
       _process_input user_input_cards
+      @out.puts "#{turns_played} turns played, #{correct_user_set_count} correct sets"
     end
     'game over'
   end
 
   def turns_played
     @turns
+  end
+
+  def correct_user_set_count
+    0
   end
 
   def _continue_play(turns_played, deck, spread)

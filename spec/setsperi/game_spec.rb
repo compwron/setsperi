@@ -1,9 +1,10 @@
 require_relative 'spec_helper'
 
 describe Game do
-  let(:g) { Game.new }
-  let (:empty_deck) { deck = Game.new.deck; deck.cards = []; deck }
-  let (:empty_spread) { spread = Game.new.spread; spread.cards = []; spread }
+  let(:assigned_out) {StringIO.new}
+  let(:g) { Game.new(stdout: assigned_out) }
+  let (:empty_deck) { deck = g.deck; deck.cards = []; deck }
+  let (:empty_spread) { spread = g.spread; spread.cards = []; spread }
   let (:valid_set) do
     [Card.new(1, 'diamond', 'solid', 'red'),
      Card.new(1, 'squiggle', 'solid', 'red'),
@@ -37,7 +38,10 @@ describe Game do
       g.spread.cards = []
       expect(g.play).to eq 'game over'
       expect(g.turns_played).to eq 0
-      expect { g.play }.to output("my message").to_stdout
+      g.play
+      binding.pry
+      puts "assigned out: #{assigned_out}"
+       # }.to output('my message').to_stdout
     end
 
     it 'ends when user says done' do

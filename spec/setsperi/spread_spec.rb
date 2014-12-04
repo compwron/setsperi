@@ -6,48 +6,48 @@ describe Spread do
   let(:invalid_user_set) { [] }
   let(:valid_user_set) do
     [
-      Card.new(Card::Number::One, Card::Symbol::Diamond, Card::Shading::Solid, Card::Color::Red),
-      Card.new(Card::Number::One, Card::Symbol::Diamond, Card::Shading::Solid, Card::Color::Green),
-      Card.new(Card::Number::One, Card::Symbol::Diamond, Card::Shading::Solid, Card::Color::Purple)
+      Card.new(1, Card::Symbol::Diamond, Card::Shading::Solid, Card::Color::Red),
+      Card.new(1, Card::Symbol::Diamond, Card::Shading::Solid, Card::Color::Green),
+      Card.new(1, Card::Symbol::Diamond, Card::Shading::Solid, Card::Color::Purple)
     ]
   end
 
   let(:non_set_cards) do
     [
-      Card.new(Card::Number::One, Card::Symbol::Diamond, Card::Shading::Solid, Card::Color::Red),
-      Card.new(Card::Number::Two, Card::Symbol::Diamond, Card::Shading::Solid, Card::Color::Green),
-      Card.new(Card::Number::Two, Card::Symbol::Diamond, Card::Shading::Solid, Card::Color::Purple)
+      Card.new(1, Card::Symbol::Diamond, Card::Shading::Solid, Card::Color::Red),
+      Card.new(2, Card::Symbol::Diamond, Card::Shading::Solid, Card::Color::Green),
+      Card.new(2, Card::Symbol::Diamond, Card::Shading::Solid, Card::Color::Purple)
     ]
   end
 
-  describe "pretty" do
+  describe 'pretty' do
     # put the setup in a let and then assert against specify?
-    let(:pretty_spread) {spread_from_deck.pretty}
-    
+    let(:pretty_spread) { spread_from_deck.pretty }
+
     specify 'shows the default spread in 4x3 rows wspecifyh a total of 12 valid cards' do
       expect(pretty_spread.split("\n").size).to eq 3
-      pretty_spread.split("\n").map {|l| 
-        expect(l.split(" ").size).to eq 4
-      }
+      pretty_spread.split("\n").map do|l|
+        expect(l.split(' ').size).to eq 4
+      end
     end
 
-    def _cards_in_pretty_spread pretty
-      pretty.split("\n").map {|l| 
-        l.split(" ").map {|c|
+    def _cards_in_pretty_spread(pretty)
+      pretty.split("\n").map do|l|
+        l.split(' ').map do|c|
           Card.resurrect(c)
-        }
-      }.flatten
+        end
+      end.flatten
     end
 
-    specify 'cards in spread should be unique' do
-      input_style_cards = _cards_in_pretty_spread(pretty_spread).map {|card| card.input_style }
-      expect(input_style_cards.uniq.size).to eq spread_from_deck.cards.size 
+    specify 'has unique cards' do
+      input_style_cards = _cards_in_pretty_spread(pretty_spread).map(&:input_style)
+      expect(input_style_cards.uniq.size).to eq spread_from_deck.cards.size
     end
   end
 
   specify 'should have cards when made wspecifyh just a deck' do
     expect(spread_from_deck.cards.size).to eq 12
-    expect([:One, :Two, :Three]).to include spread_from_deck.cards.first.number
+    expect(Card::Number).to include spread_from_deck.cards.first.number
   end
 
   specify 'should have the same cards as the previous spread when made wspecifyh a spread, no user set, and a deck' do

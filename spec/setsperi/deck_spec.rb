@@ -9,7 +9,7 @@ describe Deck do
 
   it 'each card has number, symbol, shading, color' do
     card = new_deck.cards.sample
-    expect(Card::Number.constants).to include card.number
+    expect(Card::Number).to include card.number
     expect(Card::Symbol.constants).to include card.symbol
     expect(Card::Shading.constants).to include card.shading
     expect(Card::Color.constants).to include card.color

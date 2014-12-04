@@ -40,6 +40,8 @@
     end
 
     def pretty
-      "1DSoR 1DSoR 1DSoR 1DSoR\n1DSoR 1DSoR 1DSoR 1DSoR\n1DSoR 1DSoR 1DSoR 1DSoR"
+      isc = @cards.map(&:input_style)
+      (1..3).map {|n| isc.slice!(0..3).join(' ')}.join("\n")
+      # .slice(3).join(" ").join("\n")
     end
   end

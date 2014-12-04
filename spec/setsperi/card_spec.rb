@@ -1,8 +1,8 @@
 require_relative 'spec_helper'
 
 describe Card do
-  let(:c1) { Card.new(Card::Number::One, Card::Symbol::Diamond, Card::Shading::Solid, Card::Color::Red) }
-  let(:c2) { Card.new(Card::Number::Two, Card::Symbol::Squiggle, Card::Shading::Striped, Card::Color::Green) }
+  let(:c1) { Card.new(1, Card::Symbol::Diamond, Card::Shading::Solid, Card::Color::Red) }
+  let(:c2) { Card.new(2, Card::Symbol::Squiggle, Card::Shading::Striped, Card::Color::Green) }
 
   describe 'self.resurrect' do
     it 'should create a card from a user input' do
@@ -21,10 +21,6 @@ describe Card do
 
   it 'is not equal to a card with different attributes' do
     expect(c1).to_not eq c2
-  end
-
-  it 'prints legibly' do
-    expect(c1.to_s).to eq '1 diamond:solid:red'
   end
 
   describe 'input_style' do

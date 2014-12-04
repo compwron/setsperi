@@ -9,26 +9,24 @@
     end
 
     def to_s
-      "#{number} #{symbol}:#{shading}:#{color}"
+      input_style
     end
 
     def input_style
-      [number, symbol[0], shading[0..1], color[0]].map { |i| i == i.to_i ? i : i.capitalize }.join
+      [number, symbol[0], shading[0..1], color[0]].map do |i|
+        Number.include?(i) ? i : i.capitalize
+      end.join
     end
 
     def self.resurrect(dessicated_card)
-      n = Number.constants.map { |n| eval("Number::#{n}") }.find { |n| n == dessicated_card[0].to_i }
+      n = Number.find { |n| n == dessicated_card[0].to_i }
       s = Symbol.constants.map { |s| eval("Symbol::#{s}") }.find { |s| s.capitalize[0] == dessicated_card[1] }
       sh = Shading.constants.map { |sh| eval("Shading::#{sh}") }.find { |sh| sh.capitalize[0..1] == dessicated_card[2..3] }
       c = Color.constants.map { |c| eval("Color::#{c}") }.find { |c| c.capitalize[0] == dessicated_card[4] }
       [n, s, sh, c].compact.size == 4 ? Card.new(n, s, sh, c) : nil
     end
 
-    module Number
-      One = 1
-      Two = 2
-      Three = 3
-    end
+    Number = [1, 2, 3]
 
     module Symbol
       Diamond = 'diamond'
