@@ -38,9 +38,6 @@ describe Game do
       g.spread.cards = []
       expect(g.play).to eq 'game over'
       expect(g.turns_played).to eq 0
-      g.play
-      puts "assigned out: #{assigned_out}"
-       # }.to output('my message').to_stdout
     end
 
     it 'ends when user says done' do
@@ -61,6 +58,7 @@ describe Game do
       expect(g).to receive(:gets).and_return(valid_input_set, 'done')
       g.play
       expect(g.turns_played).to eq 2
+      expect(assigned_out.string).to include "1 correct set"
     end
 
     describe 'summary' do

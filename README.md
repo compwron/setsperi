@@ -21,6 +21,7 @@ Disclaimers:
 ====
 
 * My commit style on this project is very fragmented because I steal ten minutes here and there (at lunch, on a plane, in the morning before work) to write a test and make it pass (or not) ... on a production / team project, I would break fewer things and make more cohesive (and better-described) commits. 
+* It has become apparent that this is the wrong object model and I'm keeping going basically just so I can experiment with in-place refactoring in ruby later.
 
 Ideas / Inspiration:
 ====

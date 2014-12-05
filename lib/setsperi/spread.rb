@@ -1,6 +1,7 @@
   class Spread
-    attr_accessor :cards
+    attr_accessor :cards, :user_gets_point_from_spread
     def initialize(spread, user_set, deck)
+      @user_gets_point_from_spread = false
       @cards = _choose_cards spread, user_set, deck
     end
 
@@ -15,6 +16,7 @@
       if spread.nil?
         _cards deck
       elsif _user_set_in_spread?(spread, user_set) && _valid_set?(user_set)
+        @user_gets_point_from_spread = true
         spread.cards - user_set + deck.draw_cards(3)
       else
         spread.cards

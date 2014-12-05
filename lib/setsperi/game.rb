@@ -12,6 +12,7 @@ class Game
   end
 
   def play
+    @user_points = 0
     @turns = 0
     while _continue_play @turns, @deck, @spread
       @turns += 1
@@ -20,17 +21,13 @@ class Game
       break if @done
       @spread.add_extra_cards if @cheat
       _process_input user_input_cards
-      @out.puts "#{turns_played} turns played, #{correct_user_set_count} correct sets"
+      @out.puts "#{turns_played} turns played, #{@user_points} correct sets"
     end
     'game over'
   end
 
   def turns_played
     @turns
-  end
-
-  def correct_user_set_count
-    0
   end
 
   def _continue_play(turns_played, deck, spread)
@@ -40,6 +37,7 @@ class Game
 
   def _process_input(user_input_cards)
     @spread = Spread.new(@spread, user_input_cards, @deck)
+    @user_points += 1 if @spread.user_gets_point_from_spread
   end
 
   def _interpret_command(input)
@@ -58,8 +56,5 @@ class Game
   end
 
   def _draw_more?(_input)
-  end
-
-  def summary
   end
 end

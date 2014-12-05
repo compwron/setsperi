@@ -20,6 +20,22 @@ describe Spread do
     ]
   end
 
+  describe 'user_gets_point_from_spread' do
+    specify 'no point from empty user set' do
+      expect(spread_from_deck.user_gets_point_from_spread).to eq false
+    end
+
+    specify 'no point from invalid user set' do
+      expect(Spread.new(nil, non_set_cards, deck).user_gets_point_from_spread).to eq false
+    end
+
+    specify 'point from valid user set' do
+      # spread_from_deck.cards -= spread_from_deck.cards.sample 3
+      spread_from_deck.cards += valid_user_set
+      expect(Spread.new(spread_from_deck, valid_user_set, deck).user_gets_point_from_spread).to eq true
+    end
+  end
+
   describe 'pretty' do
     # put the setup in a let and then assert against specify?
     let(:pretty_spread) { spread_from_deck.pretty }
