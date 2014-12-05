@@ -43,7 +43,7 @@
 
     def pretty
       isc = @cards.map(&:input_style)
-      (1..3).map {|n| isc.slice!(0..3).join(' ')}.join("\n")
+      (1..3).map { |_n| isc.slice!(0..3).join(' ') }.join("\n")
       # .slice(3).join(" ").join("\n")
     end
   end

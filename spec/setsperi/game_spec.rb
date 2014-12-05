@@ -1,7 +1,7 @@
 require_relative 'spec_helper'
 
 describe Game do
-  let(:assigned_out) {StringIO.new}
+  let(:assigned_out) { StringIO.new }
   let(:g) { Game.new(stdout: assigned_out) }
   let (:empty_deck) { deck = g.deck; deck.cards = []; deck }
   let (:empty_spread) { spread = g.spread; spread.cards = []; spread }
@@ -13,6 +13,16 @@ describe Game do
   let (:valid_input_set) { valid_set.map(&:input_style).join(',') }
   let(:card) { Card.new(1, 'squiggle', 'solid', 'red') }
 
+  describe 'user_points' do
+    it 'has a point after user inputs valid input set' do
+      g.spread.cards -= g.spread.cards.sample 3
+      g.spread.cards += valid_set
+
+      expect(g).to receive(:gets).and_return(valid_input_set, 'done')
+      g.play
+      expect(g.user_points).to eq 1
+    end
+  end
   describe '_cards_from' do
     it 'understands there are no cards in an invalid submitted set' do
       expect(g._cards_from('foo')). to eq []
@@ -58,11 +68,7 @@ describe Game do
       expect(g).to receive(:gets).and_return(valid_input_set, 'done')
       g.play
       expect(g.turns_played).to eq 2
-      expect(assigned_out.string).to include "1 correct set"
-    end
-
-    describe 'summary' do
-      #
+      expect(assigned_out.string).to include '1 correct set'
     end
   end
 

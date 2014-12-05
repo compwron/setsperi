@@ -2,7 +2,7 @@ class Game
   require_relative 'deck'
   require_relative 'spread'
 
-  attr_reader :deck, :spread
+  attr_reader :deck, :spread, :user_points
   MAX_TURNS = Deck.starting_size
 
   def initialize(args)
