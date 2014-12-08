@@ -12,7 +12,7 @@
       false
     end
 
-    def _choose_cards spread, user_set, deck
+    def _choose_cards(spread, user_set, deck)
       if spread.nil?
         _cards deck
       elsif _user_set_in_spread?(spread, user_set) && _valid_set?(user_set)
@@ -23,14 +23,14 @@
       end
     end
 
-    def _user_set_in_spread? spread, user_set
+    def _user_set_in_spread?(spread, user_set)
       return false if spread.nil?
       return false if user_set.nil?
       (_input_style(spread.cards) & _input_style(user_set)).size == 3
     end
 
-    def _input_style cards
-      cards.map {|c| c.input_style}
+    def _input_style(cards)
+      cards.map(&:input_style)
     end
 
     def _valid_set?(user_set)
