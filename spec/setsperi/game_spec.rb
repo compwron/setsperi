@@ -5,18 +5,20 @@ describe Game do
   let(:g) { Game.new(stdout: assigned_out) }
   let (:empty_deck) { deck = g.deck; deck.cards = []; deck }
   let (:empty_spread) { spread = g.spread; spread.cards = []; spread }
-  let (:valid_set) do
-    [Card.new(1, 'diamond', 'solid', 'red'),
-     Card.new(1, 'squiggle', 'solid', 'red'),
-     Card.new(1, 'oval', 'solid', 'red')]
+  let(:valid_user_set) do
+    [
+      Card.new(1, Card::Symbol::Diamond, Card::Shading::Solid, Card::Color::Red),
+      Card.new(1, Card::Symbol::Diamond, Card::Shading::Solid, Card::Color::Green),
+      Card.new(1, Card::Symbol::Diamond, Card::Shading::Solid, Card::Color::Purple)
+    ]
   end
-  let (:valid_input_set) { valid_set.map(&:input_style).join(',') }
+  let (:valid_input_set) { valid_user_set.map(&:input_style).join(',') }
   let(:card) { Card.new(1, 'squiggle', 'solid', 'red') }
 
   describe 'user_points' do
     it 'has a point after user inputs valid input set' do
-      g.spread.cards -= g.spread.cards.sample 3
-      g.spread.cards += valid_set
+      # g.spread.cards -= g.spread.cards.sample 3
+      g.spread.cards += valid_user_set
 
       expect(g).to receive(:gets).and_return(valid_input_set, 'done')
       g.play
@@ -37,7 +39,7 @@ describe Game do
     end
 
     it 'sees several cards in a set' do
-      expect(g._cards_from(valid_input_set)).to eq valid_set
+      expect(g._cards_from(valid_input_set)).to eq valid_user_set
     end
   end
 
@@ -62,7 +64,7 @@ describe Game do
       # user gets a point
       # turn advances
       g.spread.cards -= g.spread.cards.sample 3
-      g.spread.cards += valid_set
+      g.spread.cards += valid_user_set
 
       # Play valid set and then end game so we can count the points
       expect(g).to receive(:gets).and_return(valid_input_set, 'done')

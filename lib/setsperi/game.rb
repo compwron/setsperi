@@ -20,6 +20,7 @@ class Game
       user_input_cards = _interpret_command gets.chomp
       break if @done
       @spread.add_extra_cards if @cheat
+      puts "about to process"
       _process_input user_input_cards
       @out.puts "#{turns_played} turns played, #{@user_points} correct sets"
     end
@@ -37,6 +38,8 @@ class Game
 
   def _process_input(user_input_cards)
     @spread = Spread.new(@spread, user_input_cards, @deck)
+    # binding.pry
+    puts @spread.cards
     @user_points += 1 if @spread.user_gets_point_from_spread
   end
 
