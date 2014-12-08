@@ -1,4 +1,5 @@
   class Spread
+    require_relative 'card_set'
     attr_accessor :cards, :user_gets_point_from_spread
     def initialize(spread, user_set, deck)
       @user_gets_point_from_spread = false

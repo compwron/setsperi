@@ -15,6 +15,17 @@ describe Game do
   let (:valid_input_set) { valid_user_set.map(&:input_style).join(',') }
   let(:card) { Card.new(1, 'squiggle', 'solid', 'red') }
 
+  describe '_cards_from' do # should not test private methods. Reorg will fix this.
+    it 'should get cards from input' do
+      cards = [
+      Card.new(2, Card::Symbol::Oval, Card::Shading::Solid, Card::Color::Purple),
+      Card.new(3, Card::Symbol::Oval, Card::Shading::Open, Card::Color::Green),
+      Card.new(1, Card::Symbol::Oval, Card::Shading::Striped, Card::Color::Red)
+    ]
+      expect(g._cards_from "2OSoP 3OOpG 1OStR").to eq cards
+    end
+  end
+
   describe 'user_points' do
     it 'has a point after user inputs valid input set' do
       # g.spread.cards -= g.spread.cards.sample 3
