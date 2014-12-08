@@ -8,7 +8,7 @@
 
 Status:
 ====
-Does not really work yet
+Playable from the commandline, but it's not pretty. Starting a new direction in development under https://github.com/compwron/setalyze
 
 Goal:
 ====
