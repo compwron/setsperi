@@ -33,14 +33,40 @@ Ideas / Inspiration:
 * http://www.math.rutgers.edu/~maclagan/papers/set.pdf
 
 
+Play:
+====
+```
+ ./bin/play                                                                                                                                     
+Turn: 1
+ Spread: 
+2SStP 2DSoG 3OSoG 1SOpR
+3DSoR 1OOpR 3SStR 1OStG
+1SSoR 1DStG 2DSoP 1OStP
+Your guess: 
+3OSoG 1SSoR 2DSoP
+1 turns played, 1 correct sets
+Turn: 2
+ Spread: 
+2SStP 2DSoG 3OSoG 1SOpR
+3DSoR 1OOpR 3SStR 1OStG
+1SSoR 1DStG 2DSoP 1OStP
+Your guess: 
+done
+```
+
+To cheat:
+```
+ ./bin/solve "2SStP 2DSoG 3OSoG 1SOpR 
+3DSoR 1OOpR 3SStR 1OStG               
+1SSoR 1DStG 2DSoP 1OStP"              
+
+3OSoG 1SSoR 2DSoP                      
+```
+
+
 Development:
 ====
 ```
 rubocop -a
 rspec
-```
-
-Play:
-```
-./bin/play
 ```
