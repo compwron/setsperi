@@ -2,5 +2,5 @@
 
 require_relative '../lib/setsperi/game'
 
-g = Game.new
+g = Game.new({})
 g.play
