@@ -18,11 +18,11 @@ describe Game do
   describe '_cards_from' do # should not test private methods. Reorg will fix this.
     it 'should get cards from input' do
       cards = [
-      Card.new(2, Card::Symbol::Oval, Card::Shading::Solid, Card::Color::Purple),
-      Card.new(3, Card::Symbol::Oval, Card::Shading::Open, Card::Color::Green),
-      Card.new(1, Card::Symbol::Oval, Card::Shading::Striped, Card::Color::Red)
-    ]
-      expect(g._cards_from "2OSoP 3OOpG 1OStR").to eq cards
+        Card.new(2, Card::Symbol::Oval, Card::Shading::Solid, Card::Color::Purple),
+        Card.new(3, Card::Symbol::Oval, Card::Shading::Open, Card::Color::Green),
+        Card.new(1, Card::Symbol::Oval, Card::Shading::Striped, Card::Color::Red)
+      ]
+      expect(g._cards_from '2OSoP 3OOpG 1OStR').to eq cards
     end
   end
 

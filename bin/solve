@@ -2,7 +2,6 @@
 
 require_relative '../lib/setsperi/solver'
 
-abort("Needs cards to parse!") unless ARGV[0]
+abort('Needs cards to parse!') unless ARGV[0]
 cards = ARGV[0].strip
 puts Solver.solve(cards)
-

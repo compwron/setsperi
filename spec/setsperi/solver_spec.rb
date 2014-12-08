@@ -5,9 +5,9 @@ describe Game do
 
   describe 'self.solve' do
     it 'presents a set that Spread agrees with' do
-    	set_cards = Solver.solve(cards)
-    	expect(set_cards).to eq "2SSoP 1SOpP 3SStP"
-    	# expect(Spread.new(nil, set_cards, Deck.new).user_gets_point_from_spread).to eq true
+      set_cards = Solver.solve(cards)
+      expect(set_cards).to eq '2SSoP 1SOpP 3SStP'
+      # expect(Spread.new(nil, set_cards, Deck.new).user_gets_point_from_spread).to eq true
     end
   end
 end
